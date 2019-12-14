@@ -96,7 +96,10 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$version_dagger"
 
     // Firebase
-    implementation 'com.google.firebase:firebase-analytics:17.2.1'
+    implementation "com.google.firebase:firebase-analytics:$version_firebase_analytics"
+    implementation "com.google.firebase:firebase-database-ktx:$version_firebase_database_ktx"
+    implementation "com.google.firebase:firebase-auth:$version_firebase_auth"
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
