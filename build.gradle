@@ -24,6 +24,9 @@ buildscript {
         version_firebase_analytics = '17.2.1'
         version_firebase_database_ktx = '19.2.0'
         version_firebase_auth = '19.2.0'
+        version_google_maps = '17.0.0'
+        version_geofire = '3.0.0'
+
 
     }
     repositories {

@@ -102,7 +102,10 @@ dependencies {
     implementation "com.google.firebase:firebase-auth:$version_firebase_auth"
 
     // Google Maps
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation "com.google.android.gms:play-services-maps:$version_google_maps"
+
+    // GeoFire
+    implementation "com.firebase:geofire-android:$version_geofire"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
