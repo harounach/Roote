@@ -100,12 +100,11 @@ dependencies {
     implementation "com.google.firebase:firebase-analytics:$version_firebase_analytics"
     implementation "com.google.firebase:firebase-database-ktx:$version_firebase_database_ktx"
     implementation "com.google.firebase:firebase-auth:$version_firebase_auth"
-
-    // Google Maps
-    implementation "com.google.android.gms:play-services-maps:$version_google_maps"
-
-    // GeoFire
     implementation "com.firebase:geofire-android:$version_geofire"
+
+    // Google Play Services
+    implementation "com.google.android.gms:play-services-maps:$version_google_maps"
+    implementation "com.google.android.gms:play-services-location:$version_google_location"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

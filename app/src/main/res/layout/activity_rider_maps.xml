@@ -61,5 +61,15 @@
             map:layout_constraintBottom_toTopOf="@+id/send_location"
             map:layout_constraintEnd_toEndOf="@+id/send_location"
             map:layout_constraintStart_toStartOf="@+id/send_location" />
+
+        <Button
+            android:id="@+id/my_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="My Location"
+            map:layout_constraintBottom_toTopOf="@+id/send_another_location"
+            map:layout_constraintEnd_toEndOf="@+id/send_another_location"
+            map:layout_constraintStart_toStartOf="@+id/send_another_location" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
