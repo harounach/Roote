@@ -1,13 +1,39 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/secondaryColor</item>
 
 
+    </style>
+
+    <style name="Widget.Roote.SignInUpButton" parent="Widget.MaterialComponents.Button">
+<!--        <item name="android:textColor">@color/primaryColor</item>-->
+<!--        <item name="android:backgroundTint">@android:color/white</item>-->
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Roote.SignInUpButton</item>
+
+    </style>
+    <style name="ShapeAppearanceOverlay.Roote.SignInUpButton" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="Widget.Roote.TextInputLayout.FilledBox"
+        parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Roote.TextInputLayout.FilledBox</item>
+        <!--        <item name="boxCornerRadiusTopStart">16dp</item>-->
+        <!--        <item name="boxCornerRadiusTopEnd">16dp</item>-->
+        <!--        <item name="boxCornerRadiusBottomStart">16dp</item>-->
+        <!--        <item name="boxCornerRadiusBottomEnd">16dp</item>-->
+
+    </style>
+    <style name="ShapeAppearanceOverlay.Roote.TextInputLayout.FilledBox" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
     </style>
 
 </resources>
