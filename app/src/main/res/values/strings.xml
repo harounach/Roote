@@ -23,4 +23,5 @@
     <string name="email_hint">Email</string>
     <string name="username_hint">User Name</string>
     <string name="forget_password">Forget password?</string>
+    <string name="create_account">Create Account</string>
 </resources>
