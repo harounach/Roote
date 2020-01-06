@@ -74,14 +74,14 @@ class LoginFragment : Fragment() {
                 String.format(getString(R.string.error_invalid_email_not_valid), email)
         }
 
-        if (!isPasswordNotEmpty) {
-            binding.passwordEditText.error =
-                getString(R.string.error_cannot_be_empty)
-        }
-
         if (!isPasswordLongEnough) {
             binding.passwordEditText.error =
                 getString(R.string.error_invalid_password_not_valid)
+        }
+
+        if (!isPasswordNotEmpty) {
+            binding.passwordEditText.error =
+                getString(R.string.error_cannot_be_empty)
         }
 
         return validEmail && validPassword
@@ -95,6 +95,7 @@ class LoginFragment : Fragment() {
         loginViewModel.loginEvent.observe(this, Observer {isLogin->
             if (isLogin) {
                showToast("Login successfully!")
+                loginViewModel.loginEventDone()
             }
         })
     }

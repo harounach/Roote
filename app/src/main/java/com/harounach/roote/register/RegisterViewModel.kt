@@ -18,14 +18,6 @@ import java.security.SecureRandom
 
 class RegisterViewModel(application: Application): AndroidViewModel(application) {
 
-    /**
-     * a Random password generated after creating account for the first time
-     * */
-    private var password: String? = null
-
-    // Random to generate random password
-    private var random = SecureRandom()
-
     // repository
     private var repository: RooteRepository = RooteRepository(application)
 
@@ -43,13 +35,12 @@ class RegisterViewModel(application: Application): AndroidViewModel(application)
      * Create account using userName and email supplied
      * @param userName The user name
      * @param email The email
+     * @param password The password
      * */
-    fun onCreateAccount(userName: String, email: String) {
-        // Generate random password
-        password = BigInteger(130, random).toString(32)
+    fun onCreateAccount(userName: String, email: String, password: String) {
 
         //create account
-        val accountTask = repository.createAccountWithEmailAndPassword(email, "haroun")
+        val accountTask = repository.createAccountWithEmailAndPassword(email, password)
 
         accountTask.addOnCompleteListener {
             if (it.isSuccessful) {
@@ -87,6 +78,26 @@ class RegisterViewModel(application: Application): AndroidViewModel(application)
      * */
     fun isUserNameValid(userName: String): Boolean =
         userName.isNotEmpty()
+
+    /**
+     * Check to see if password is not empty
+     * @param password
+     *
+     * @return Boolean
+     * */
+    fun isPasswordNotEmpty(password: String) : Boolean = password.isNotEmpty()
+
+    /**
+     * Check to see if password is at least 6 characters long
+     * @param password
+     *
+     * @return Boolean
+     * */
+    fun isPasswordLongEnough(password: String) : Boolean {
+        return password.length >= 6
+    }
+
+
 
     /**
      * Reset createAccountEvent event

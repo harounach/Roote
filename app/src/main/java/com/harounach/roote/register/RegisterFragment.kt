@@ -47,16 +47,17 @@ class RegisterFragment : Fragment() {
     }
 
     private fun createAccount() {
-        /* Grab the user name and email from the corresponding text fields*/
+        /* Grab the user name, email, and password from the corresponding text fields*/
         val userName = binding.usernameEditText.text.toString().trim()
         val userEmail = binding.emailEditText.text.toString().trim()
+        val userPassword = binding.passwordEditText.text.toString()
 
         /* Check that user name and email are okay */
-         val validCredentials = credentialValidation(userName, userEmail)
+         val validCredentials = credentialValidation(userName, userEmail, userPassword)
 
         if (validCredentials) {
             // Creating account
-            registerViewModel.onCreateAccount(userName, userEmail)
+            registerViewModel.onCreateAccount(userName, userEmail, userPassword)
         }
 
     }
@@ -66,9 +67,12 @@ class RegisterFragment : Fragment() {
      * @param userName The user name
      * @param userEmail The user email
      * */
-    private fun credentialValidation(userName: String, userEmail: String) : Boolean {
+    private fun credentialValidation(userName: String, userEmail: String, password: String) : Boolean {
         val validUserName = registerViewModel.isUserNameValid(userName)
         val validEmail = registerViewModel.isEmailValid(userEmail)
+        val isPasswordNotEmpty = registerViewModel.isPasswordNotEmpty(password)
+        val isPasswordLongEnough = registerViewModel.isPasswordLongEnough(password)
+        val validPassword = isPasswordNotEmpty && isPasswordLongEnough
 
         if (!validUserName) {
             binding.usernameEditText.error =
@@ -80,7 +84,17 @@ class RegisterFragment : Fragment() {
                 String.format(getString(R.string.error_invalid_email_not_valid), userEmail)
         }
 
-        return validUserName && validEmail
+        if (!isPasswordLongEnough) {
+            binding.passwordEditText.error =
+                getString(R.string.error_invalid_password_not_valid)
+        }
+
+        if (!isPasswordNotEmpty) {
+            binding.passwordEditText.error =
+                getString(R.string.error_cannot_be_empty)
+        }
+
+        return validUserName && validEmail && validPassword
     }
 
     /**
