@@ -24,4 +24,19 @@
     <string name="username_hint">User Name</string>
     <string name="forget_password">Forget password?</string>
     <string name="create_account">Create Account</string>
+
+
+    <!-- Logs and Errors -->
+    <string name="error_message_failed_sign_in_no_network">There was a problem with the network connection.\nAre you sure you\'re connected to the internet?</string>
+    <string name="error_invalid_email_not_valid">%s is not a valid email</string>
+    <string name="error_message_email_issue">There was an error with your email; please check that you entered it correctly.</string>
+    <string name="error_you_didnt_give_permissions">You must give ShoppingList++ permission to access your Google account information if you want to use Google sign-in.</string>
+    <string name="error_email_taken">The email is already taken.</string>
+    <string name="error_invalid_password_not_valid">Please enter a password that is at least 6 characters long.</string>
+    <string name="error_cannot_be_empty">This cannot be empty.</string>
+    <string name="log_success_create_account">Create account success!</string>
+    <string name="log_success_send_password_reset_email">Send password reset email success!</string>
+    <string name="log_error_invalid_provider">"Invalid provider: "</string>
+    <string name="log_error_failed_to_change_password">"Failed to change the password: "</string>
+
 </resources>
