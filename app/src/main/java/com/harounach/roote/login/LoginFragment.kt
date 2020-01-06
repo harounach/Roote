@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 
 import com.harounach.roote.R
 import com.harounach.roote.databinding.FragmentLoginBinding
@@ -32,10 +33,8 @@ class LoginFragment : Fragment() {
         // instantiate the ViewModel
         loginViewModel = ViewModelProviders.of(this)[LoginViewModel::class.java]
 
-        // handle Login button click
-        binding.loginButton.setOnClickListener {
-            login()
-        }
+        // Setup click listeners
+        setUpClickListeners()
 
         // Setup observers
         setUpObservers()
@@ -102,6 +101,29 @@ class LoginFragment : Fragment() {
 
     private fun showToast(message: String) {
         Toast.makeText(activity!!, message, Toast.LENGTH_SHORT).show()
+    }
+
+    /**
+     * Set up click listeners
+     * */
+    private fun setUpClickListeners() {
+        // handle Login button click
+        binding.loginButton.setOnClickListener {
+            login()
+        }
+
+        // navigate to Registration fragment
+        binding.createAccountButton.setOnClickListener {
+            navigateToRegisterFragment()
+        }
+    }
+
+    /**
+     * Navigate to RegisterFragment
+     * */
+    private fun navigateToRegisterFragment() {
+        val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+        this.findNavController().navigate(action)
     }
 
 

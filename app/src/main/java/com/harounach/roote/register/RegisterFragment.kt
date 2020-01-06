@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 
 import com.harounach.roote.R
 import com.harounach.roote.databinding.FragmentRegisterBinding
@@ -34,10 +35,9 @@ class RegisterFragment : Fragment() {
         // instantiate the ViewModel
         registerViewModel = ViewModelProviders.of(this)[RegisterViewModel::class.java]
 
-        // Set on click listener on Create account button
-        binding.createAccountButton.setOnClickListener {
-            createAccount()
-        }
+        // Setup click listeners
+        setUpClickListeners()
+
 
         // Setup observers
         setUpObservers()
@@ -98,6 +98,28 @@ class RegisterFragment : Fragment() {
 
     private fun showToast(message: String) {
         Toast.makeText(activity!!, message, Toast.LENGTH_SHORT).show()
+    }
+
+    /**
+     * Set up click listeners
+     * */
+    private fun setUpClickListeners() {
+        // Set on click listener on Create account button
+        binding.createAccountButton.setOnClickListener {
+            createAccount()
+        }
+
+        // navigate to Login fragment
+        binding.loginButton.setOnClickListener {
+            navigateToLoginFragment()
+        }
+    }
+
+    /**
+     * Navigate to LoginFragment
+     * */
+    private fun navigateToLoginFragment() {
+        this.findNavController().popBackStack()
     }
 
 

@@ -10,6 +10,10 @@
 
     </style>
 
+
+    <style name="Widget.Roote.SignInUpButton.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Roote.SignInUpButton</item>
+    </style>
     <style name="Widget.Roote.SignInUpButton" parent="Widget.MaterialComponents.Button">
 <!--        <item name="android:textColor">@color/primaryColor</item>-->
 <!--        <item name="android:backgroundTint">@android:color/white</item>-->

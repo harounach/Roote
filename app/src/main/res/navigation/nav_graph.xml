@@ -18,15 +18,13 @@
         tool:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"
+            app:popUpTo="@+id/loginFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.harounach.roote.register.RegisterFragment"
         android:label="fragment_register"
-        tool:layout="@layout/fragment_register" >
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        tool:layout="@layout/fragment_register" />
 </navigation>

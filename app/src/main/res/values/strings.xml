@@ -24,6 +24,7 @@
     <string name="username_hint">User Name</string>
     <string name="forget_password">Forget password?</string>
     <string name="create_account">Create Account</string>
+    <string name="log_in_label">Log in</string>
 
 
     <!-- Logs and Errors -->
@@ -38,5 +39,6 @@
     <string name="log_success_send_password_reset_email">Send password reset email success!</string>
     <string name="log_error_invalid_provider">"Invalid provider: "</string>
     <string name="log_error_failed_to_change_password">"Failed to change the password: "</string>
+
 
 </resources>
