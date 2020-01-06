@@ -44,9 +44,18 @@ class RegisterViewModel(application: Application): AndroidViewModel(application)
 
         accountTask.addOnCompleteListener {
             if (it.isSuccessful) {
+
+                // create account in firebase database
+                repository.createUserFromEmailPasswordInFirebase(
+                    userName,
+                    email,
+                    "rider"
+                )
+
                 Timber.d("Creating account successfully!")
                 // create account successfully
                 _createAccountEvent.value = true
+
 
 
             } else {

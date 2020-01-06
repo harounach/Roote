@@ -66,6 +66,7 @@ class RegisterFragment : Fragment() {
      * Validate user name and email
      * @param userName The user name
      * @param userEmail The user email
+     * @param password The user password
      * */
     private fun credentialValidation(userName: String, userEmail: String, password: String) : Boolean {
         val validUserName = registerViewModel.isUserNameValid(userName)
