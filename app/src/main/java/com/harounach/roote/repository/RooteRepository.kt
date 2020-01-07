@@ -113,6 +113,37 @@ class RooteRepository(val context: Context) {
      * @param accountType
      * */
     fun createUserFromGoogleAccountInFirebase(userName: String, email: String, accountType: String) {
+        // Encode the email
+        val encodedUserEmail = Utils.encodeEmail(email)
 
+        // "users" database reference
+        val userLocationRef = FirebaseDatabase
+            .getInstance()
+            .getReference(FIREBASE_URL_USERS)
+            .child(encodedUserEmail)
+
+        /**
+         * See if there is already a user (for example, if they already logged in with an associated
+         * Google account.
+         */
+        userLocationRef.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                /* If there is no user, make one */
+                if (snapshot.value == null) {
+                    val newUser = User(userName, encodedUserEmail, accountType)
+
+                    // Create user in database
+                    firebaseRootRef
+                        .child(FIREBASE_LOCATION_USERS)
+                        .child(encodedUserEmail)
+                        .setValue(newUser)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Timber.e("Creating user in firebase failed")
+            }
+
+        })
     }
 }

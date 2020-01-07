@@ -67,6 +67,15 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             if (it.isSuccessful) {
                 Timber.d("Login with google succeeded!")
                 _loginEvent.value = true
+
+                // create account in firebase database
+                val googleUserName = googleAccount.displayName!!
+                val googleEmail = googleAccount.email!!
+                repository.createUserFromGoogleAccountInFirebase(
+                    googleUserName,
+                    googleEmail,
+                    "rider"
+                )
             } else {
                 Timber.e("Login with google failed")
                 // Handle exception
