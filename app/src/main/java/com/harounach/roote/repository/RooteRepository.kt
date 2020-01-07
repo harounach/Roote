@@ -2,6 +2,7 @@ package com.harounach.roote.repository
 
 import android.content.Context
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -53,7 +54,19 @@ class RooteRepository(val context: Context) {
     }
 
     /**
-     * Create user in firebase database
+     * Login with google credential
+     * @param credential The google [AuthCredential]
+     *
+     * @return Task<AuthResult>
+     * */
+    fun loginWithGoogle(credential: AuthCredential) : Task<AuthResult>{
+        return FirebaseAuth
+                .getInstance()
+                .signInWithCredential(credential)
+    }
+
+    /**
+     * Create user with email/password in firebase database
      * @param userName The user name
      * @param email The user email used as the database's node key
      * @param accountType
@@ -91,5 +104,15 @@ class RooteRepository(val context: Context) {
             }
 
         })
+    }
+
+    /**
+     * Create user with Google account in firebase database
+     * @param userName The user name
+     * @param email The user email used as the database's node key
+     * @param accountType
+     * */
+    fun createUserFromGoogleAccountInFirebase(userName: String, email: String, accountType: String) {
+
     }
 }

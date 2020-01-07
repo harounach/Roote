@@ -27,6 +27,7 @@ buildscript {
         version_google_maps = '17.0.0'
         version_geofire = '3.0.0'
         version_google_location = '17.0.0'
+        version_google_auth = '17.0.0'
 
     }
     repositories {
