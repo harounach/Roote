@@ -26,9 +26,15 @@ class RegisterViewModel(application: Application): AndroidViewModel(application)
     val createAccountEvent: LiveData<Boolean>
             get() = _createAccountEvent
 
+    // LiveData to inform user that something went wrong
+    private val _errorReportEvent = MutableLiveData<String?>()
+    val errorReportEvent: LiveData<String?>
+        get() = _errorReportEvent
+
     // Initialization block
     init {
         _createAccountEvent.value = false
+        _errorReportEvent.value = null
     }
 
     /**
@@ -61,7 +67,9 @@ class RegisterViewModel(application: Application): AndroidViewModel(application)
             } else {
                 // Creating account failed
                 Timber.e("Creating account failed! : ${it.exception?.message} : $email")
-                handleException(accountTask.exception)
+                accountTask.exception?.let {excep->
+                    handleException(excep)
+                }
             }
         }
 
@@ -115,17 +123,28 @@ class RegisterViewModel(application: Application): AndroidViewModel(application)
         _createAccountEvent.value = false
     }
 
+    /**
+     * Reset errorReportEvent event
+     * */
+    fun errorReportEventDone() {
+        _errorReportEvent.value = null
+    }
+
     private fun handleException(exception: Exception?) {
-        if (exception is FirebaseAuthInvalidCredentialsException?) {
+        if (exception is FirebaseAuthInvalidCredentialsException) {
             when ((exception as FirebaseAuthInvalidCredentialsException?)!!.errorCode) {
                 "ERROR_INVALID_EMAIL" -> {
                     Timber.e("Invalid email!!!!!!!!")
+                    // inform user with this error
+                    _errorReportEvent.value = "Invalid email"
                 }
             }
-        } else if (exception is FirebaseAuthUserCollisionException?) {
+        } else if (exception is FirebaseAuthUserCollisionException) {
             when ((exception as FirebaseAuthUserCollisionException?)!!.errorCode) {
                 "ERROR_EMAIL_ALREADY_IN_USE" -> {
                     Timber.e("Email already in use!")
+                    // inform user with this error
+                    _errorReportEvent.value = "Email already in use!"
                 }
             }
         }

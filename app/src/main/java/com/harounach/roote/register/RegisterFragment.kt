@@ -109,6 +109,14 @@ class RegisterFragment : Fragment() {
                 registerViewModel.createAccountEventDone()
             }
         })
+
+        /* observe error reporting */
+        registerViewModel.errorReportEvent.observe(this, Observer { errorMessage->
+            errorMessage?.let {
+                showToast(it)
+                registerViewModel.errorReportEventDone()
+            }
+        })
     }
 
     private fun showToast(message: String) {
