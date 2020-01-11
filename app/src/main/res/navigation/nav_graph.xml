@@ -3,14 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/riderMapsFragment">
 
-    <activity
-        android:id="@+id/riderMapsActivity"
-        android:name="com.harounach.roote.rider.RiderMapsActivity"
-        android:label="RiderMapsActivity"
-        tool:layout="@layout/activity_rider_maps"
-        />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.harounach.roote.login.LoginFragment"
@@ -21,10 +15,21 @@
             app:destination="@id/registerFragment"
             app:popUpTo="@+id/loginFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_loginFragment_to_riderMapsFragment"
+            app:destination="@id/riderMapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.harounach.roote.register.RegisterFragment"
         android:label="fragment_register"
         tool:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/riderMapsFragment"
+        android:name="com.harounach.roote.rider.RiderMapsFragment"
+        android:label="RiderMapsFragment" >
+        <action
+            android:id="@+id/action_riderMapsFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

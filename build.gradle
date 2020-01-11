@@ -13,6 +13,8 @@ buildscript {
         version_retrofit = '2.6.2'
         version_moshi = '1.9.2'
         version_lifecycle_extensions = '2.2.0-rc03'
+        version_lifecycle_viewmodel_ktx = '2.2.0-rc03'
+        version_lifecycle_livedata_ktx = '2.2.0-rc03'
         version_timber = '4.7.1'
         version_glide = '4.9.0'
         version_room = '2.2.2'

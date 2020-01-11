@@ -8,9 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -19,6 +21,7 @@ import com.google.android.gms.common.api.ApiException
 
 import com.harounach.roote.R
 import com.harounach.roote.databinding.FragmentLoginBinding
+import com.harounach.roote.rider.RiderMapsFragmentDirections
 import timber.log.Timber
 
 /**
@@ -28,6 +31,7 @@ class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private lateinit var loginViewModel: LoginViewModel
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,11 +43,18 @@ class LoginFragment : Fragment() {
         // instantiate the ViewModel
         loginViewModel = ViewModelProviders.of(this)[LoginViewModel::class.java]
 
+        // Find navController
+        navController = this.findNavController()
+
         // Setup click listeners
         setUpClickListeners()
 
         // Setup observers
         setUpObservers()
+
+        // Exit the app if user ignore login
+        setUpOnBackButtonPressed()
+
 
         // Return root view
         return binding.root
@@ -105,6 +116,14 @@ class LoginFragment : Fragment() {
             }
         })
 
+        /* Observe login state */
+        loginViewModel.authenticationState.observe(this, Observer {authenticationState ->
+            if (authenticationState == LoginViewModel.AuthenticationState.AUTHENTICATED) {
+                // user is authenticated navigate to rider maps fragment
+                navigateToRiderMapsFragment()
+            }
+        })
+
         /* observe error reporting */
         loginViewModel.errorReportEvent.observe(this, Observer { errorMessage->
             errorMessage?.let {
@@ -135,6 +154,15 @@ class LoginFragment : Fragment() {
         // handle google sign in button click
         binding.loginWithGoogleButton.setOnClickListener {
             onSignInGooglePressed()
+        }
+    }
+
+    /**
+     * Exit the app if user ignore login
+     * */
+    private fun setUpOnBackButtonPressed() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            requireActivity().finish()
         }
     }
 
@@ -177,6 +205,13 @@ class LoginFragment : Fragment() {
     private fun navigateToRegisterFragment() {
         val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
         this.findNavController().navigate(action)
+    }
+
+    /**
+     * Navigate to RiderMapsFragment
+     * */
+    private fun navigateToRiderMapsFragment() {
+        navController.popBackStack(R.id.riderMapsFragment, false)
     }
 
     companion object {

@@ -5,6 +5,7 @@ import android.util.Patterns
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -29,6 +30,13 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     val errorReportEvent: LiveData<String?>
         get() = _errorReportEvent
 
+    val authenticationState = FirebaseUserLiveData().map { user ->
+        if (user != null) {
+            AuthenticationState.AUTHENTICATED
+        } else {
+            AuthenticationState.UNAUTHENTICATED
+        }
+    }
 
     // Initialization block
     init {
@@ -156,5 +164,12 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     override fun onCleared() {
         super.onCleared()
         Timber.d("ViewModel Cleared!")
+    }
+
+    /**
+     * Enum to define authenticated and unauthenticated states
+     * */
+    enum class AuthenticationState {
+        AUTHENTICATED, UNAUTHENTICATED
     }
 }
