@@ -22,6 +22,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/my_location_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="My Location"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
