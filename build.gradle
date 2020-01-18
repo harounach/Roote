@@ -30,6 +30,7 @@ buildscript {
         version_geofire = '3.0.0'
         version_google_location = '17.0.0'
         version_google_auth = '17.0.0'
+        version_google_places = '2.1.0'
 
     }
     repositories {

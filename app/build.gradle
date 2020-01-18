@@ -108,6 +108,7 @@ dependencies {
     implementation "com.google.android.gms:play-services-maps:$version_google_maps"
     implementation "com.google.android.gms:play-services-location:$version_google_location"
     implementation "com.google.android.gms:play-services-auth:$version_google_auth"
+    implementation "com.google.android.libraries.places:places:$version_google_places"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
